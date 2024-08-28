@@ -1,0 +1,213 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+    <meta http-equiv="Content-Security-Policy" content="default-src * data: gap: https://ssl.gstatic.com; style-src * 'unsafe-inline'; script-src * 'unsafe-inline' 'unsafe-eval'">
+    <meta http-equiv="Cache-Control" content="no-cache">
+    <script src="components/loader.js"></script>
+    <script src="lib/onsenui/js/onsenui.min.js"></script>
+    <script src="lib/onsenui/js/angular-onsenui.min.js"></script>
+    <script type="module" src="js/firebase.js"></script>
+    <script src="js/quagga.min.js"></script>
+    <script src="js/qrcode.min.js"></script>
+    <script src="js/jsQR.min.js"></script>
+    <script src="js/functions.js"></script>
+    <script src="js/controller.js"></script>
+
+    <link rel="stylesheet" href="components/loader.css">
+    <link rel="stylesheet" href="lib/onsenui/css/onsenui.css">
+    <link rel="stylesheet" href="lib/onsenui/css/onsen-css-components.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="manifest" href="/manifest.json">
+
+    <script>
+    ons.ready(function() {
+        console.log("Onsen UI is ready!");
+        ons.disableDeviceBackButtonHandler();
+    });
+
+    function editSelects(event) {
+        document.getElementById('choose-sel').removeAttribute('modifier');
+            if (event.target.value == 'material' || event.target.value == 'underbar') {
+                document.getElementById('choose-sel').setAttribute('modifier', event.target.value);
+            }
+        }
+
+    </script>
+</head>
+<body>
+    <ons-navigator id="navigator" var="navi" page="menupage.html" ng-controller="AppController as app"></ons-navigator>
+
+    <!-- メインメニューページ -->
+     <!--
+    <ons-template id="loginpage.html">
+        <ons-page id="loginpage">
+            <ons-toolbar>
+                <div class="left">
+                    <ons-toolbar-button>
+                        <ons-icon icon="md-menu"></ons-icon>
+                    </ons-toolbar-button>
+                </div>
+                <div class="right">
+                <ons-toolbar-button>
+                    <ons-icon icon="fa-cog"></ons-icon>
+                </ons-toolbar-button>
+                </div>
+            </ons-toolbar>
+            <div class="logincontent">
+                <div>
+                    <img src="images/jlptques_logo.png" width="250px">
+                </div>
+                <img src="images/book_image.jpg" width="150px">　
+            </div>
+            <div style="text-align: center; margin-top: 30px;">
+                <div>
+                <ons-input id="username" modifier="underbar" placeholder="Username" float></ons-input>
+                </div>
+                <div>
+                <ons-input id="password" modifier="underbar" type="password" placeholder="Password" float></ons-input>
+                </div>
+                <div style="margin-top: 30px;">
+                <ons-button class="blinkbtn-p" modifier="cta" ng-click="push_loginpage()">Sign in</ons-button>
+                </div>
+            </div>
+        </ons-page>
+    </ons-template>
+    -->
+
+    <ons-template id="menupage.html">
+        <ons-page id="menupage">
+            <!-- toolbar -->
+            <ons-toolbar>
+                <div class="left">
+                    <ons-toolbar-button>
+                        <ons-icon icon="md-menu"></ons-icon>
+                    </ons-toolbar-button>
+                </div>
+                <div class="right">
+                <ons-toolbar-button>
+                    <ons-icon icon="fa-cog"></ons-icon>
+                </ons-toolbar-button>
+                </div>
+            </ons-toolbar>
+            <!--<ons-if platform="android">-->
+            <ons-fab position="bottom left" ripple="true" modifier="mini">
+                <ons-icon icon="md-plus"></ons-icon>
+            </ons-fab>
+            <!--</ons-if>-->
+            <div class="menucontent">
+                <!--
+                <div class="versiontext">
+                    v3.0　
+                    <ons-button modifier="cta" style="font-size:0.7em" onclick="window.location.reload();">最新版確認</ons-button>　
+                </div>
+                <div>
+                    <img src="images/jlptques_logo.png" width="250px">
+                </div>
+                <img src="images/book_image.jpg" width="150px">　-->
+                <!-- checkbox -->
+                  <p style="text-align: center; margin-top: 10px;">
+                    <ons-search-input
+                    placeholder="Search"
+                    onchange="ons.notification.alert('Searched for: ' + this.value)"
+                    ></ons-search-input>
+                  </p>
+                <!--<ons-list>
+                <ons-list-item tappable>-->
+                    <div class="checkboxtext">
+                        <label class="left">
+                            <ons-checkbox input-id="check-1" checked="true" modifier="material"></ons-checkbox>
+                        </label>
+                        <label for="check-1" class="center">
+                            初心者
+                        </label>
+                        <label class="left">
+                            <ons-checkbox input-id="check-2" modifier="noborder"></ons-checkbox>
+                        </label>
+                        <label for="check-2" class="center">
+                            プロ
+                        </label>
+                    </div>
+                <!--</ons-list-item>
+                </ons-list>-->
+                
+                <ons-list>
+                    <ons-list-item tappable>
+                    <label class="left">
+                        <ons-radio name="color" input-id="radio-1" modifier="material"></ons-radio>
+                    </label>
+                    <label for="radio-1" class="center">
+                        Red
+                    </label>
+                    </ons-list-item>
+                    <ons-list-item tappable>
+                    <label class="left">
+                        <ons-radio name="color" input-id="radio-2"></ons-radio>
+                    </label>
+                    <label for="radio-2" class="center">
+                        Blue
+                    </label>
+                    </ons-list-item>
+                </ons-list>
+                
+                <p>
+                    <ons-row>
+                    <ons-col width="40px" style="text-align: center; line-height: 31px;">
+                        <ons-icon icon="md-volume-down"></ons-icon>
+                    </ons-col>
+                    <ons-col>
+                        <ons-range style="width: 100%;" value="5"></ons-range>
+                    </ons-col>
+                    <ons-col width="40px" style="text-align: center; line-height: 31px;">
+                        <ons-icon icon="md-volume-up"></ons-icon>
+                    </ons-col>
+                    </ons-row>
+                    <ons-row style="margin-top: 10px;">
+                    <ons-col width="40px" style="text-align: center; line-height: 31px;">
+                        <ons-icon icon="md-brightness-low"></ons-icon>
+                    </ons-col>
+                    <ons-col>
+                        <ons-range style="width: 100%;" value="50"></ons-range>
+                    </ons-col>
+                    <ons-col width="40px" style="text-align: center; line-height: 31px;">
+                        <ons-icon icon="md-brightness-high"></ons-icon>
+                    </ons-col>
+                    </ons-row>
+                    <ons-row style="margin-top: 10px;">
+                    <ons-col width="40px" style="text-align: center; line-height: 31px;">
+                        <ons-icon icon="md-thumb-down"></ons-icon>
+                    </ons-col>
+                    <ons-col>
+                        <ons-range disabled style="width: 100%;" value="75"></ons-range>
+                    </ons-col>
+                    <ons-col width="40px" style="text-align: center; line-height: 31px;">
+                        <ons-icon icon="md-thumb-up"></ons-icon>
+                    </ons-col>
+                    </ons-row>
+                </p>
+
+                <ons-select id="choose-sel" onchange="editSelects(event)">
+                    <option value="basic">Basic</option>
+                    <option value="material">Material</option>
+                    <option value="underbar">Underbar</option>
+                </ons-select>
+
+                <div><ons-button class="blinkbtn-p" modifier="outline" ng-click="">N1レベル</ons-button></div>
+                <div><ons-button class="blinkbtn" modifier="cta" ripple="true" ng-click="">N2レベル</ons-button></div>
+                <div><ons-button class="noblinkbtn-g" modifier="light" ng-click="">N3レベル</ons-button></div>
+                <div><ons-button class="noblinkbtn" modifier="large--cta" ng-click="">N4レベル</ons-button></div>
+                <div><ons-button class="noblinkbtn" modifier="cta" disabled="true" ng-click="">N5レベル</ons-button></div>
+                <div><ons-button class="noblinkbtn" modifier="material" ng-click="">レベル</ons-button></div>
+            </div>
+        </ons-page>
+    </ons-template>
+
+    <!-- 処理中ページ -->
+    <ons-modal id="progress.html">
+        <div style="text-align: center; font-size:1.5em;">
+           <p><ons-icon icon="md-spinner" size="30px" spin></ons-icon>　お待ちください.....</p>
+        </div>
+    </ons-modal>
+</body>
+</html>

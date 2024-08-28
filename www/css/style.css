@@ -1,0 +1,61 @@
+/**/
+
+.toolbarcontent {
+  font-size: 5em;
+}
+
+.logincontent {
+  text-align: center;
+}
+
+.checkboxtext {
+  margin: 20px 5px 0px;
+  text-align: center;
+  color:#364e96;
+}
+
+.versiontext {
+  margin: 20px 5px 0px;
+  text-align: right;
+  font-size: 0.5em;
+  color:#364e96;
+}
+
+.menucontent {
+  text-align: center;
+  font-size: 2em;
+}
+
+.blinkbtn {
+  margin: 10px;
+  padding: 10px;
+  font-size: 1.2em;
+  -webkit-animation: blink 1.0s ease infinite  alternate;
+  animation: blink 1.0s ease infinite  alternate;
+}
+
+.blinkbtn-p {
+  margin: 10px;
+  padding: 10px;
+  font-size: 1.2em;
+  -webkit-animation: blink 1.0s ease infinite  alternate;
+  animation: blink 1.0s ease infinite  alternate;
+  background-color: hotpink;
+}
+
+.blink {
+  -webkit-animation: blink 0.5s ease infinite  alternate;
+  animation: blink 0.5s ease infinite  alternate;
+  color: red;
+  font-size: 1.5em;
+}
+
+@-webkit-keyframes blink {
+  0% {transform: scale(1)}
+  100% {transform: scale(1.2)}
+}
+
+@keyframes blink {
+  0% {transform: scale(1)}
+  100% {transform: scale(1.2)}
+}
